@@ -2,30 +2,3 @@
   background-color: #ffffff;
   font-family: var(--font-roboto), sans-serif;
 }
-.catalog{
-  color: #0D5ADC;
-  font-size: 18px;
-  font-weight: 900;
-}
-
-.text-elems{
-  color: #3B4157;
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.personal-account-items{
-  display: flex;
-  flex-direction: row;
-
-}
-
-.header {
-  height: 101px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center; 
-  margin-left: 160px;
-  margin-right: 160px;
-}

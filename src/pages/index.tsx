@@ -1,9 +1,11 @@
 import { Roboto } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-import PersonalAccount from "@/components/icons/PersonalAccount";
+import PersonalAccount from "@/components/icons/PersonalAccountIcon";
+import ProductList from "@/components/product-list";
+import Header from "@/components/header";
 const roboto = Roboto({
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "700"], // укажи нужные веса
+  weight: ["400", "500", "700"],
   variable: "--font-roboto",
   display: "swap",
 });
@@ -11,13 +13,8 @@ export default function Home() {
   return (
     <>
     <div className={`${styles.page} ${roboto.variable}`}>
-      <header className={styles.header}>
-        <p className={styles.catalog}>Каталог</p>
-        <div>
-          <p>Сравнение</p>
-          <PersonalAccount/>
-        </div>
-      </header>
+      <Header/>
+      <ProductList/>
     </div>
     </>
   );
