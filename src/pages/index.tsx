@@ -1,6 +1,5 @@
 import { Roboto } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-import PersonalAccount from "@/components/icons/PersonalAccountIcon";
 import ProductList from "@/components/product-list";
 import Header from "@/components/header";
 const roboto = Roboto({
