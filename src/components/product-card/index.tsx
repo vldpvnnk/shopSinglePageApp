@@ -2,6 +2,7 @@ import styles from "@/components/product-card/ProductCard.module.css"
 import ArrowButtonIcon from "../icons/ArrowButtonIcon";
 import { useEffect, useState } from "react";
 import Product from "@/types/Product";
+import Image from "next/image";
 
 interface ProductCardProps{
     product: Product;
@@ -41,7 +42,7 @@ const ProductCard = ({product, handleIconClick, hiddenProductsLength}: ProductCa
     <>
         <div className={styles.wrapper}>
             <div className={styles.imageBox}>
-                <img src={productItem.image} className={styles.image}/>
+                <Image src={productItem.image} className={styles.image} alt=""/>
                 <div onClick={handleIconClick}>
                     {hiddenProductsLength > 1 && <ArrowButtonIcon/> }
                 </div>
