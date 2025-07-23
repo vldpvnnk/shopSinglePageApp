@@ -17,12 +17,15 @@
 - **Figma** для дизайна интерфейса
 
 ## Установка и запуск
-
-1. Установите зависимости:
+1. Клонируйте репозиторий:
+```
+git clone https://github.com/vldpvnnk/shopSinglePageApp.git
+```
+2. Установите зависимости:
 ```
 npm install
 ```
-2. Запустите development сервер:
+3. Запустите development сервер:
 ```
 npm run dev
 ```

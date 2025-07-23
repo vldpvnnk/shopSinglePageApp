@@ -2,7 +2,6 @@ import styles from "@/components/modals/ProductChangeModal.module.css"
 import Product from "@/types/Product";
 import { RefObject, useMemo, useState } from "react";
 import ChangeProductIcon from "../icons/ChangeProductIcon";
-import Image from "next/image";
 interface ProductChangleModalProps{
     isOpen: boolean;
     position: {
@@ -22,7 +21,7 @@ const ProductChangeModal = ({isOpen, position, modalRef, products, onSelectProdu
             product.name.toLowerCase().includes(searchQuery.toLowerCase())
         );
     }, [products, searchQuery]);
-    console.log(products)
+    
     return (
         <>
             {isOpen && (
@@ -49,7 +48,7 @@ const ProductChangeModal = ({isOpen, position, modalRef, products, onSelectProdu
                                 style={{cursor: "pointer"}}
                             >
                                 <ChangeProductIcon/>
-                                <Image src={product.image} className={styles.image} alt=""/>
+                                <img src={product.image} className={styles.image}/>
                                 <p className={styles.productText}>{product.name}</p>
                             </div>
                         ))}
