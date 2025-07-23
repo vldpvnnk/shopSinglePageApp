@@ -1,8 +1,8 @@
 .list{
     display: flex;
     flex-direction: column;
-    margin-left: 160px;
-    margin-right: 160px;
+    margin-left: 165px;
+    margin-right: 165px;
 }
 
 .topSection {
@@ -33,24 +33,71 @@
 .displayedPhones {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    gap: 10px;
     margin-top: 20px;
+    padding-bottom: 40px;
+    width: 100%;
+    justify-content: space-around;
 }
-
+.outerWrapper {
+    padding-left: 165px;
+    padding-right: 165px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
 .displayedPhonesNumbers{
     display: flex;
     flex-direction: row;
     gap: 4px;
 }
 
-.tableWrapper {
-    background-color: #F3F9FC;
-    width: 100%;
-    height: 100vh;
-    margin-top: 77px;
+.showDiffsWrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    white-space: nowrap;
 }
 
-.table{
-    display: grid;
-    grid-template-columns: 10;
+.centeredBlock {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.showDiffsItems{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.checkboxDifs {
+    width: 24px;
+    height: 24px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #FFFFFF;
+    border: 2px solid #C1C1C2;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+.checkboxDifs:checked {
+    background-color: #0D5ADC;
+    border-color: #0D5ADC;
+}
+
+.checkboxDifs:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
 }

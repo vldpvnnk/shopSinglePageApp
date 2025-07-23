@@ -1,0 +1,46 @@
+.tableWrapper {
+    background-color: #F3F9FC;
+    height: 100%;
+}
+.table{
+    display: flex;
+    flex-direction: column;
+    margin-left: 165px;
+    margin-right: 165px;
+    padding-bottom: 91px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    align-items: center;
+    height: 80px;
+}
+
+.featureName{
+    width: 200px;
+}
+
+.featureNameText {
+    color: #A4A9B9;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+}
+
+.featureValue {
+    flex: 1;
+    text-align: center;
+}
+
+.featureValueText {
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    font-weight: 500;
+    color: #3B4157;
+}

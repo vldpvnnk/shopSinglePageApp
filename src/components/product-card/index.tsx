@@ -5,9 +5,10 @@ import Product from "@/types/Product";
 
 interface ProductCardProps{
     product: Product;
+    handleIconClick: (e: React.MouseEvent) => void
 }
 
-const ProductCard = ({product}: ProductCardProps) => {
+const ProductCard = ({product, handleIconClick}: ProductCardProps) => {
     const [productItem, setProductItem] = useState<Product | null>(null)
 
     useEffect(()=> {
@@ -40,7 +41,9 @@ const ProductCard = ({product}: ProductCardProps) => {
         <div className={styles.wrapper}>
             <div className={styles.imageBox}>
                 <img src={productItem.image} className={styles.image}/>
-                <ArrowButtonIcon/>
+                <div onClick={handleIconClick}>
+                    <ArrowButtonIcon/>
+                </div>
             </div>
             <p className={styles.name}>{productItem.name}</p>
         </div>
