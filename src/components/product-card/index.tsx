@@ -5,10 +5,11 @@ import Product from "@/types/Product";
 
 interface ProductCardProps{
     product: Product;
-    handleIconClick: (e: React.MouseEvent) => void
+    handleIconClick: (e: React.MouseEvent) => void;
+    hiddenProductsLength: number;
 }
 
-const ProductCard = ({product, handleIconClick}: ProductCardProps) => {
+const ProductCard = ({product, handleIconClick, hiddenProductsLength}: ProductCardProps) => {
     const [productItem, setProductItem] = useState<Product | null>(null)
 
     useEffect(()=> {
@@ -42,7 +43,7 @@ const ProductCard = ({product, handleIconClick}: ProductCardProps) => {
             <div className={styles.imageBox}>
                 <img src={productItem.image} className={styles.image}/>
                 <div onClick={handleIconClick}>
-                    <ArrowButtonIcon/>
+                    {hiddenProductsLength > 1 && <ArrowButtonIcon/> }
                 </div>
             </div>
             <p className={styles.name}>{productItem.name}</p>

@@ -30,7 +30,15 @@
     letter-spacing: 2%;
 }
 
-
+.displayedPhones {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 20px;
+    padding-bottom: 40px;
+    width: 100%;
+    justify-content: space-around;
+}
 .outerWrapper {
     padding-left: 165px;
     padding-right: 165px;
@@ -53,21 +61,11 @@
     white-space: nowrap;
 }
 
-.displayedPhones {
-    display: flex;
-    flex-direction: row;
-    margin-top: 20px;
-    padding-bottom: 40px;
-    width: 100%;
-    justify-content: space-around;
-}
-
 .centeredBlock {
     display: flex;
     justify-content: center;
     width: 100%;
 }
-
 .showDiffsItems{
     display: flex;
     align-items: center;

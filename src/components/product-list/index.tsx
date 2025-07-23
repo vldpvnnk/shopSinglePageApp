@@ -9,6 +9,7 @@ import ProductTable from "../product-table";
 import ProductChangeModal from "../modals/ProductChangeModal";
 import ProductListHeader from "./ProductListHeader";
 import Product from "@/types/Product";
+import ShowDifferencesToogle from "./ShowDifferencesToggle";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
@@ -18,12 +19,28 @@ const ProductList = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [position, setPosition] = useState({ top: 0, left: 0 });
     const [targerProductId, setTargetProductId] = useState<string | null>(null)
+    const MODAL_WIDTH = 421;
+
     const handleIconClick = (e: React.MouseEvent, productId: string) => {
         const rect = e.currentTarget.getBoundingClientRect();
+        const scrollY = window.scrollY;
+        const scrollX = window.scrollX;
+    
+        let left = rect.left + scrollX;
+        const top = rect.bottom + scrollY;
+    
+        const rightEdge = left + MODAL_WIDTH;
+        const viewportWidth = window.innerWidth;
+    
+        if (rightEdge > viewportWidth) {
+            left = viewportWidth - MODAL_WIDTH - 20;
+        }
+    
         setTargetProductId(productId);
-        setPosition({ top: rect.bottom + window.scrollY, left: rect.left + window.scrollX });
+        setPosition({ top, left });
         setIsOpen(true);
     };
+    
       
     const handleCountChange = (count: number) => {
         dispatch(setVisibleCount(count))
@@ -48,7 +65,7 @@ const ProductList = () => {
         const productMap = new Map(allProducts.map(p => [p.id, p]));
         return visibleIds
           .map(id => productMap.get(id))
-          .filter((p): p is Product => p !== undefined); // фильтрация на случай, если какого-то id нет
+          .filter((p): p is Product => p !== undefined);
       }, [allProducts, visibleIds]);
 
 
@@ -56,24 +73,16 @@ const ProductList = () => {
         const visibleIdSet = new Set(visibleIds);
         return allProducts.filter(p => !visibleIdSet.has(p.id))
     }, [allProducts, visibleIds])
+    
 
-    console.log("visibleProducts: ", visibleProducts);
-    console.log("hiddenProducts: ", hiddenProducts);
     return (
         <>
             <ProductListHeader onChange={handleCountChange} visibleCount={visibleCount}/>
             <div className={styles.outerWrapper}>
-                <div className={styles.showDiffsWrapper}>
-                    <div className={styles.showDiffsItems}>
-                        <input 
-                            type="checkbox" 
-                            className={styles.checkboxDifs}
-                            checked={showOnlyDifferences}
-                            onChange={(e) => setShowOnlyDifferences(e.target.checked)}
-                        />
-                        <p className={styles.productNumbers}>Показать отличия</p>
-                    </div>
-                </div>
+                <ShowDifferencesToogle 
+                    setShowOnlyDifferences={setShowOnlyDifferences} 
+                    showOnlyDifferences={showOnlyDifferences}
+                />
                 <div className={styles.centeredBlock}>
                     <div className={styles.displayedPhones}>
                         {visibleProducts.map((item) => (
@@ -81,6 +90,7 @@ const ProductList = () => {
                                 product={item} 
                                 key={item.id} 
                                 handleIconClick={(e) => handleIconClick(e, item.id)}
+                                hiddenProductsLength={hiddenProducts.length}
                             />
                         ))}
                         <ProductChangeModal 
@@ -104,7 +114,6 @@ const ProductList = () => {
                 showOnlyDifferences={showOnlyDifferences}
             />
         </>
-
     )
 }
 
