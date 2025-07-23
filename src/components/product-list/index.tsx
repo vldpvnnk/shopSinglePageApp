@@ -1,24 +1,26 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { fetchProducts, setVisibleCount } from "@/store/productSlice";
+import { fetchProducts, replaceVisibleProduct, setVisibleCount } from "@/store/productSlice";
 import styles from "@/components/product-list/ProductList.module.css"
 import ProductCard from "../product-card";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useAppDispatch } from "@/store/hooks";
 import ProductTable from "../product-table";
 import ProductChangeModal from "../modals/ProductChangeModal";
-import ProductCountSelector from "./ProductCountSelector";
 import ProductListHeader from "./ProductListHeader";
+import Product from "@/types/Product";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
-    const {allProducts, visibleCount} = useSelector((state: RootState) => state.products);
+    const {allProducts, visibleCount, visibleIds} = useSelector((state: RootState) => state.products);
     const modalRef = useRef<HTMLDivElement | null>(null);
     const [showOnlyDifferences, setShowOnlyDifferences] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [position, setPosition] = useState({ top: 0, left: 0 });
-    const handleIconClick = (e: React.MouseEvent) => {
+    const [targerProductId, setTargetProductId] = useState<string | null>(null)
+    const handleIconClick = (e: React.MouseEvent, productId: string) => {
         const rect = e.currentTarget.getBoundingClientRect();
+        setTargetProductId(productId);
         setPosition({ top: rect.bottom + window.scrollY, left: rect.left + window.scrollX });
         setIsOpen(true);
     };
@@ -42,8 +44,21 @@ const ProductList = () => {
         dispatch(fetchProducts());
     }, [dispatch]);
 
-    const visibleProducts = allProducts.slice(0, visibleCount);
+    const visibleProducts = useMemo(() => {
+        const productMap = new Map(allProducts.map(p => [p.id, p]));
+        return visibleIds
+          .map(id => productMap.get(id))
+          .filter((p): p is Product => p !== undefined); // фильтрация на случай, если какого-то id нет
+      }, [allProducts, visibleIds]);
 
+
+    const hiddenProducts = useMemo(()=> {
+        const visibleIdSet = new Set(visibleIds);
+        return allProducts.filter(p => !visibleIdSet.has(p.id))
+    }, [allProducts, visibleIds])
+
+    console.log("visibleProducts: ", visibleProducts);
+    console.log("hiddenProducts: ", hiddenProducts);
     return (
         <>
             <ProductListHeader onChange={handleCountChange} visibleCount={visibleCount}/>
@@ -62,12 +77,24 @@ const ProductList = () => {
                 <div className={styles.centeredBlock}>
                     <div className={styles.displayedPhones}>
                         {visibleProducts.map((item) => (
-                            <ProductCard product={item} key={item.id} handleIconClick={handleIconClick}/>
+                            <ProductCard 
+                                product={item} 
+                                key={item.id} 
+                                handleIconClick={(e) => handleIconClick(e, item.id)}
+                            />
                         ))}
                         <ProductChangeModal 
                             isOpen={isOpen} 
                             position={position}
                             modalRef={modalRef}
+                            products={hiddenProducts}
+                            onSelectProduct={(newProduct) => {
+                                if (targerProductId){
+                                    dispatch(replaceVisibleProduct({oldProductId: targerProductId, newProduct}))
+                                    setIsOpen(false);
+                                    setTargetProductId(null);
+                                }
+                            }}
                         />
                     </div>
                 </div>
