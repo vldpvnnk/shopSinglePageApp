@@ -1,38 +1,87 @@
+.headerWrapper {
+  border-bottom: 1px solid #A6A5A9;
+}
+
+.header {
+  height: 101px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; 
+  margin-left: 165px;
+  margin-right: 165px;
+}
+
 .catalog {
-    color: #0D5ADC;
-    font-size: 18px;
-    font-weight: 900;
+  color: #0D5ADC;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.textElems {
+  color: #3B4157;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.rightSectionHeader {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+  align-items: center;
+}
+
+.personalAccountItems {
+  display: flex;
+  flex-direction: row;
+  gap: 19px;
+  align-items: center;
+}
+@media (max-width: 1024px) {
+  .header {
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+}
+@media (max-width: 768px) {
+  .header {
+    height: 60px;
+    margin-left: 30px;
+    margin-right: 30px;
   }
   
-  .textElems{
-    color: #3B4157;
-    font-size: 12px;
-    font-weight: 900;
+  .catalog {
+    font-size: 16px;
   }
   
   .rightSectionHeader {
-    display: flex;
-    flex-direction: row;
-    gap: 48px;
-    align-items: center;
+    gap: 20px;
   }
   
-  .personalAccountItems{
-    display: flex;
-    flex-direction: row;
-    gap: 19px;
-    align-items: center;
+  .personalAccountItems {
+    gap: 8px;
   }
   
-  .headerWrapper {
-    border-bottom: 1px solid #A6A5A9;
+  .textElems {
+    font-size: 10px;
   }
+}
+
+@media (max-width: 480px) {
   .header {
-    height: 101px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center; 
-    margin-left: 165px;
-    margin-right: 165px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
+  
+  .rightSectionHeader {
+    gap: 12px;
+  }
+  
+  .personalAccountItems p {
+    display: none;
+  }
+  
+  .personalAccountItems {
+    gap: 0;
+  }
+}

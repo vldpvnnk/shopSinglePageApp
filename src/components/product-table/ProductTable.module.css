@@ -1,46 +1,139 @@
-.tableWrapper {
-    background-color: #F3F9FC;
-    height: 100%;
-}
-.table{
-    display: flex;
-    flex-direction: column;
-    margin-left: 165px;
-    margin-right: 165px;
-    padding-bottom: 91px;
+.desktopTable {
+  display: flex;
+  flex-direction: column;
+  margin-left: 165px;
+  margin-right: 165px;
+  padding-bottom: 91px;
 }
 
 .row {
-    display: flex;
-    flex-direction: row;
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-    align-items: center;
-    height: 80px;
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+  height: 80px;
 }
 
-.featureName{
-    width: 192px;
-}
-
-.featureNameText {
-    color: #A4A9B9;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: 0%;
-    text-transform: uppercase;
+.featureName {
+  width: 192px;
 }
 
 .featureValue {
-    flex: 1;
-    text-align: center;
+  flex: 1;
+  text-align: center;
+}
+
+ .tableWrapper {
+  background-color: #F3F9FC;
+  width: 100%;
+  overflow-x: auto; 
+}
+
+.table {
+  display: flex;
+  flex-direction: row; 
+  gap: 10px; 
+  padding: 0 165px 91px 165px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 150px; 
+  align-items: center;
+  background-color: white;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 4px;
+}
+
+.featureNameText {
+  color: #A4A9B9;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .featureValueText {
-    font-size: 18px;
-    line-height: 100%;
-    letter-spacing: 0%;
+  font-size: 18px;
+  font-weight: 500;
+  color: #3B4157;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .column {
+    flex: 0 0 100px;
+  }
+  .featureNameText {
+    font-size: 10px;
+  }
+  .featureValueText {
+    font-size: 14px;
+  }
+}
+.desktopTable {
+  display: flex;
+}
+
+.mobileTable {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .desktopTable {
+    display: none;
+  }
+  .mobileTable {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .table {
+    display: flex;
+    flex-direction: row;
+    min-width: max-content;
+    gap: 10px;
+    padding-left: 60px;
+    padding-right: 0px;
+  }
+
+  .column {
+    flex: 0 0 140px; 
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+  }
+
+  .cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 8px 4px;
+  }
+
+  .featureNameText {
+    color: #A4A9B9;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .featureValueText {
+    font-size: 16px;
     font-weight: 500;
     color: #3B4157;
+    text-align: center;
+  }
 }

@@ -1,10 +1,10 @@
 import styles from "@/components/product-list/ProductList.module.css"
 import { SetStateAction } from "react";
-interface ShowDifferencesToogleProps{
+interface ShowDifferencesToggleProps{
     showOnlyDifferences: boolean;
     setShowOnlyDifferences: (value: SetStateAction<boolean>) => void
 }
-const ShowDifferencesToogle = ({setShowOnlyDifferences, showOnlyDifferences}: ShowDifferencesToogleProps) => {
+const ShowDifferencesToggle = ({setShowOnlyDifferences, showOnlyDifferences}: ShowDifferencesToggleProps) => {
     return (
         <div className={styles.showDiffsWrapper}>
             <div className={styles.showDiffsItems}>
@@ -20,4 +20,4 @@ const ShowDifferencesToogle = ({setShowOnlyDifferences, showOnlyDifferences}: Sh
     )
 }
 
-export default ShowDifferencesToogle;
+export default ShowDifferencesToggle;

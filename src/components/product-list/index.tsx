@@ -9,7 +9,7 @@ import ProductTable from "../product-table";
 import ProductChangeModal from "../modals/ProductChangeModal";
 import ProductListHeader from "./ProductListHeader";
 import Product from "@/types/Product";
-import ShowDifferencesToogle from "./ShowDifferencesToggle";
+import ShowDifferencesToggle from "./ShowDifferencesToggle";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
@@ -18,7 +18,7 @@ const ProductList = () => {
     const [showOnlyDifferences, setShowOnlyDifferences] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [position, setPosition] = useState({ top: 0, left: 0 });
-    const [targerProductId, setTargetProductId] = useState<string | null>(null)
+    const [targetProductId, setTargetProductId] = useState<string | null>(null)
     const MODAL_WIDTH = 421;
 
     const handleIconClick = (e: React.MouseEvent, productId: string) => {
@@ -79,7 +79,7 @@ const ProductList = () => {
         <>
             <ProductListHeader onChange={handleCountChange} visibleCount={visibleCount}/>
             <div className={styles.outerWrapper}>
-                <ShowDifferencesToogle 
+                <ShowDifferencesToggle 
                     setShowOnlyDifferences={setShowOnlyDifferences} 
                     showOnlyDifferences={showOnlyDifferences}
                 />
@@ -99,8 +99,8 @@ const ProductList = () => {
                             modalRef={modalRef}
                             products={hiddenProducts}
                             onSelectProduct={(newProduct) => {
-                                if (targerProductId){
-                                    dispatch(replaceVisibleProduct({oldProductId: targerProductId, newProduct}))
+                                if (targetProductId){
+                                    dispatch(replaceVisibleProduct({oldProductId: targetProductId, newProduct}))
                                     setIsOpen(false);
                                     setTargetProductId(null);
                                 }

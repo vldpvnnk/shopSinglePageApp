@@ -20,48 +20,65 @@ const ProductTable = ({products, showOnlyDifferences}: ProductTableProps) => {
 
     const filteredKeys = showOnlyDifferences ? featureKeys.filter(isDifferent) : featureKeys;
     const iconKey = [
-        "Частота обновления экрана",
         "NFC",
         "Поддержка ESIM",
         "Поддержка беспроводной зарядки"
     ]
     return (
-        <div className={styles.tableWrapper}>
-            <div className={styles.table}>
-                {filteredKeys.map((featureKey) => {
-
-                    const isIconKey = iconKey.includes(featureKey) ;
+        <>
+            <div className={styles.tableWrapper}>
+                <div className={styles.desktopTable}>
+                    {filteredKeys.map((featureKey) => {
+                    const isIconKey = iconKey.includes(featureKey);
                     return (
                         <div key={featureKey} className={styles.row}>
                         <div className={styles.featureName}>
-                            <p className={styles.featureNameText}>
-                                {featureKey}
-                            </p>
+                            <p className={styles.featureNameText}>{featureKey}</p>
                         </div>
                         {products.map((product) => {
                             const value = product.features[featureKey];
                             return (
-                                <div key={product.id} className={styles.featureValue}>  
+                            <div key={product.id} className={styles.featureValue}>
                                 <p className={styles.featureValueText}>
-                                {isIconKey ? (
-                                    value === "Да" ? (
-                                    <PresentValueIcon />
-                                    ) : (
-                                    <MissingValueIcon />
-                                    )
-                                ) : (
-                                    value
-                                )}
+                                {isIconKey
+                                    ? value === "Да"
+                                    ? <PresentValueIcon />
+                                    : <MissingValueIcon />
+                                    : value}
                                 </p>
                             </div>
-                            )
+                            );
                         })}
+                        </div>
+                    );
+                    })}
+                </div>
+                <div className={styles.mobileTable}>
+                    <div className={styles.table}>
+                    {products.map((product) => (
+                        <div key={product.id} className={styles.column}>
+                        {filteredKeys.map((featureKey) => {
+                            const isIconKey = iconKey.includes(featureKey);
+                            const value = product.features[featureKey];
+                            return (
+                            <div key={featureKey} className={styles.cell}>
+                                <p className={styles.featureNameText}>{featureKey}</p>
+                                <p className={styles.featureValueText}>
+                                {isIconKey
+                                    ? value === "Да"
+                                    ? <PresentValueIcon />
+                                    : <MissingValueIcon />
+                                    : value}
+                                </p>
+                            </div>
+                            );
+                        })}
+                        </div>
+                    ))}
                     </div>
-                    )
-                })}
+                </div>
             </div>
-        </div>
-
+        </>
     )
 }
 

@@ -2,7 +2,7 @@ import styles from "@/components/modals/ProductChangeModal.module.css"
 import Product from "@/types/Product";
 import { RefObject, useMemo, useState } from "react";
 import ChangeProductIcon from "../icons/ChangeProductIcon";
-interface ProductChangleModalProps{
+interface ProductChangeModalProps{
     isOpen: boolean;
     position: {
         top: number;
@@ -12,7 +12,7 @@ interface ProductChangleModalProps{
     products: Product[];
     onSelectProduct: (product: Product) => void;
 }
-const ProductChangeModal = ({isOpen, position, modalRef, products, onSelectProduct}: ProductChangleModalProps) => {
+const ProductChangeModal = ({isOpen, position, modalRef, products, onSelectProduct}: ProductChangeModalProps) => {
 
     const [searchQuery, setSearchQuery] = useState("");
 
